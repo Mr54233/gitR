@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 # Author:Cq
-# cron:20 11 * * *
+# cron:15 7 * * *
 # version:1.0
 # Date:2022/04/8 16:18
 import json
@@ -141,7 +141,7 @@ for i in range(len(Authorizationtmp)):
     url = 'https://xsgzgl.zxhnzq.com/api/BatchSignin/Add'
 
     bodytemperature = str(round(random.uniform(36.3, 37), 1))  # 随机生成体温
-    data = {"batchid": 8792, "positionid": positionID, "verifystate": 0,
+    data = {"batchid": 8782, "positionid": positionID, "verifystate": 0,
             "health_Student": {"xh": xh, "registerdate": registerdate, "bodytemperature": bodytemperature,
                                "bodystatus": "正常",
                                "bodyabnormalinfo": "无异常", "xsremark": "", "status": 0, "quarantinestate": "无隔离",
