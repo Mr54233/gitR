@@ -75,13 +75,13 @@ class A:
 
         # 获取小程序内位置id
         biztime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-        headers = {'Host': 'xsgzgl.zxhnzq.com', 'Connection': 'keep-alive',
+        headers = {'Host': 'zhxgservice.jxau.edu.cn', 'Connection': 'keep-alive',
                    'Authorization': token,
                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat',
                    'content-type': 'application/json', 'env': 'production', 'positionID': '', 'terminal': 'miniprogram',
                    'version': '2.0.71',
                    'Accept-Encoding': 'gzip, deflate, br'}
-        url = 'https://xsgzgl.zxhnzq.com/api/PositionInfo/AddOrEditPosition'
+        url = 'https://zhxgservice.jxau.edu.cn/api/PositionInfo/AddOrEditPosition'
         data = {"usercode": xh, "xq": xq, "typeid": 5, "remark": "体温打卡", "biztime": biztime,
                 "lat": lat,
                 "lng": lng, "address": address, "province": province, "city": city,
@@ -104,8 +104,8 @@ class A:
     # 获取学期
     # return 0 异常
     def get_Xq(self, token):
-        url = 'https://xsgzgl.zxhnzq.com/api/EducationAPI/GetDqXqInfo?isrefresh=true&scode=10410&sccode=1041001'
-        headers = {'Host': 'xsgzgl.zxhnzq.com', 'Connection': 'keep-alive',
+        url = 'https://zhxgservice.jxau.edu.cn/api/EducationAPI/GetDqXqInfo?isrefresh=true&scode=10410&sccode=1041001'
+        headers = {'Host': 'zhxgservice.jxau.edu.cn', 'Connection': 'keep-alive',
                    'Authorization': token,
                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat',
                    'content-type': 'application/json', 'env': 'production', 'positionID': '', 'terminal': 'miniprogram',
@@ -125,8 +125,8 @@ class A:
         # return 0 异常
 
     def get_Xh(self, token):
-        url = 'https://xsgzgl.zxhnzq.com/api/ScancodeRegister/GetMyScanCode?scode=10410&sccode=1041001'
-        headers = {'Host': 'xsgzgl.zxhnzq.com', 'Connection': 'keep-alive',
+        url = 'https://zhxgservice.jxau.edu.cn/api/ScancodeRegister/GetMyScanCode?scode=10410&sccode=1041001'
+        headers = {'Host': 'zhxgservice.jxau.edu.cn', 'Connection': 'keep-alive',
                    'Authorization': token,
                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat',
                    'content-type': 'application/json', 'env': 'production',
@@ -147,8 +147,8 @@ class A:
             # exit(0)
 
     def get_tempId(self, token):
-        url = 'https://zhxgapi.zxhnzq.com/api/Batch/GetBatchList?type=2&name=&scode=10410&sccode=1041001'
-        headers = {'Host': 'zhxgapi.zxhnzq.com', 'Connection': 'keep-alive',
+        url = 'https://zhxgservice.jxau.edu.cn/api/Batch/GetBatchList?type=2&name=&scode=10410&sccode=1041001'
+        headers = {'Host': 'zhxgservice.jxau.edu.cn', 'Connection': 'keep-alive',
                    'Authorization': token,
                    'charset': 'utf-8', 'scode': '10410',
                    'User-Agent': 'Mozilla/5.0 (Linux; Android 12; M2012K11AC Build/SKQ1.220213.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3263 MMWEBSDK/20211001 Mobile Safari/537.36 MMWEBID/5452 MicroMessenger/8.0.16.2040(0x2800103B) Process/appbrand0 WeChat/arm64 Weixin NetType/5G Language/zh_CN ABI/arm64 MiniProgramEnv/android',
@@ -174,10 +174,10 @@ class A:
             "%Y-%m-%dT%H:%M:%S" + "." + str(int(round(registerdate - int(registerdate), 3) * 1000)) + "Z",
             time.localtime(registerdate))
 
-        url = 'https://xsgzgl.zxhnzq.com/api/BatchSignin/Add'
+        url = 'https://zhxgservice.jxau.edu.cn/api/BatchSignin/Add'
 
         bodytemperature = str(round(random.uniform(36.3, 37), 1))  # 随机生成体温
-        headers = {'Host': 'xsgzgl.zxhnzq.com', 'Connection': 'keep-alive',
+        headers = {'Host': 'zhxgservice.jxau.edu.cn', 'Connection': 'keep-alive',
                    'Authorization': token,
                    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat',
                    'content-type': 'application/json', 'env': 'production',
@@ -196,6 +196,7 @@ class A:
         html = json.loads(html.text)
         if html.get("code") == 200:
             self.logs = self.logs + str(temperId) + ' 体温登记 √ \n\n'
+            return 1
         else:
             self.logs = self.logs + str(temperId) + ' 体温登记 × ' + html.get("msg") + '\n\n'
             return 0
@@ -271,21 +272,21 @@ class A:
                 weizhi = self.location[0].split(",")
             Xq = self.get_Xq(self.Authorizationtmp[i])
             if Xq == 0:
-                return
+                continue
             Xh = self.get_Xh(self.Authorizationtmp[i])
             if Xh == 0:
-                return
+                continue
             positionId = self.get_locationInfo( self.Authorizationtmp[i], weizhi[0], weizhi[1], Xh, Xq)
             if positionId == 0:
-                return
+                continue
             temperIds = self.get_tempId(self.Authorizationtmp[i])
             if len(temperIds) == 0:
-                return
+                continue
             else:
                 self.logs = self.logs + '一共' + str(len(temperIds)) + '个\n'
             result = 0
             for temperId in temperIds:
-                result = 1 if self.batch_sign(Xh, positionId, temperId, self.Authorizationtmp[i]) == 1 else result
+                result = 1 if self.batch_sign(Xh, positionId, temperId, self.Authorizationtmp[i]) != 0 else result
 
             if result != 0:
                 flag += 1
